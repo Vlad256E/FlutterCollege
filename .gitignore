@@ -1,3 +1,8 @@
+*.pdb
+*.dll
+/build/
+/windows/flutter/ephemeral/
+
 # Miscellaneous
 .class
 .log
