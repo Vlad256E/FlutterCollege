@@ -18,7 +18,7 @@ class MainScreen extends StatelessWidget {
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
-              // --- Карточка с фото ---
+              // Карточка с фото 
               Container(
                 padding: const EdgeInsets.all(20),
                 width: double.infinity,
@@ -67,7 +67,7 @@ class MainScreen extends StatelessWidget {
               ),
               const SizedBox(height: 20.0),
 
-              // --- Статистика ---
+              // Статистика
               Container(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 decoration: BoxDecoration(

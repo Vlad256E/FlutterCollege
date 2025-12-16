@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-// Импортируем Supabase
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-// Это главная функция, с нее начинается программа
 Future<void> main() async {
-  // Обязательно для Supabase
+ 
   WidgetsFlutterBinding.ensureInitialized();
 
   await Supabase.initialize(
@@ -12,11 +10,9 @@ Future<void> main() async {
     anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp3bGJ5ZXZ4aXh4aXdwanpqdXJ5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE5Mjg5NjEsImV4cCI6MjA3NzUwNDk2MX0.hQlO6j6I9lM_cEsK14ex7sOjHkW1JVufMZbxV4DU6_k',
   );
 
-  // Запускаем приложение
   runApp(MyApp());
 }
 
-// Это корень нашего приложения
 class MyApp extends StatelessWidget {
   MyApp({super.key});
 
@@ -43,42 +39,41 @@ class _HomeScreenState extends State<HomeScreen> {
   // Контроллер для ввода текста
   TextEditingController _textController = TextEditingController();
 
-  // Это наш клиент Supabase, через него мы делаем запросы
+  // Это клиент Supabase
   final _supabase = Supabase.instance.client;
 
-  // Здесь будем хранить список данных из базы
+  // Здесь хранится список данных из базы
   List<Map<String, dynamic>> _data = [];
   // Переменная для отслеживания загрузки
   bool _isLoading = false;
 
-  // Эта функция вызывается при загрузке экрана
+  // Функция вызывается при загрузке экрана
   @override
   void initState() {
     super.initState();
-    // Сразу загружаем данные при открытии
+    // Загружаем данные при открытии
     _loadData();
   }
 
-  // Функция для ЗАГРУЗКИ данных
+  // Функция для загрузки данных
   Future<void> _loadData() async {
-    // Показываем индикатор загрузки
+    // Индикатор загрузки
     setState(() {
       _isLoading = true;
     });
 
-    // Делаем запрос в базу (select) из таблицы 'profiles'
-    // Это метод из задания
+    // Делаем запрос select 
     final response = await _supabase.from('profiles').select();
 
     // Прячем индикатор и обновляем список данных на экране
     setState(() {
-      // Преобразуем ответ в нужный нам формат
+      // Преобразуем ответ нужный формат
       _data = List<Map<String, dynamic>>.from(response);
       _isLoading = false;
     });
   }
 
-  // Функция для ДОБАВЛЕНИЯ данных
+  // Функция для добаления данных
   Future<void> _addData() async {
     String username = _usernameController.text;
     String text = _textController.text;
@@ -90,7 +85,6 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     // Вставляем данные (insert) в таблицу 'profiles'
-    // Это метод из задания
     await _supabase.from('profiles').insert({
       'username': username,
       'text': text,
@@ -104,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
     _loadData();
   }
 
-  // Это наш экран
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -113,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
-        // Column располагает все вертикально
+        // Column
         child: Column(
           children: [
             // Поле для ввода 'username'
@@ -139,12 +133,12 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                // Кнопка 'Добавить'
+                // Кнопка "Добавить"
                 ElevatedButton(
                   onPressed: _addData, // Вызываем функцию добавления
                   child: Text('Добавить'),
                 ),
-                // Кнопка 'Загрузить'
+                // Кнопка "Загрузить"
                 ElevatedButton(
                   onPressed: _loadData, // Вызываем функцию загрузки
                   child: Text('Загрузить'),
@@ -153,7 +147,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             SizedBox(height: 20.0),
             // Отображение списка пользователей
-            // Проверяем, идет ли загрузка
+            // Проверка, идёт ли загрузка
             _isLoading
                 ? CircularProgressIndicator() // Показываем крутилку
                 : Expanded(
@@ -161,7 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: ListView.builder(
                       itemCount: _data.length,
                       itemBuilder: (context, index) {
-                        // Берем один элемент из списка
+                        // Один элемент из списка
                         var item = _data[index];
                         // Показываем его
                         return Card(
