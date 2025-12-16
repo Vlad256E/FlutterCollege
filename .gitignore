@@ -1,0 +1,49 @@
+# Miscellaneous
+.class
+.log
+.pyc
+.swp
+.DS_Store
+.atom
+.buildlog
+.history
+.svn
+
+# IntelliJ  Android Studio
+.iml
+.ipr
+.iws
+.idea
+
+# Visual Studio Code
+.vscode
+
+# FlutterDart specific
+.dart_tool/
+.flutter-plugins/
+.flutter-plugins-dependencies/
+.packages/
+.pub-cache/
+.pub/
+build/
+
+# Android specific
+androidapplibs
+androidappsrcmainassets
+androidgradlewrappergradle-wrapper.jar
+android.gradle
+androidcaptures
+androidgradlew
+androidgradlew.bat
+androidlocal.properties
+
+# iOS specific
+iosFlutterApp.framework
+iosFlutterFlutter.framework
+iosFlutterGenerated.xcconfig
+iosFlutterapp.framework
+iosFlutterflutter_assets
+iosServiceDefinitions.json
+iosRunnerGeneratedPluginRegistrant.
+iosPods
+ios.symlinks
